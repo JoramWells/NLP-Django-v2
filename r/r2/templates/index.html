@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+<canvas style="height: 100px;">
+
+</canvas>
+
+<section id="blog" class="blog">
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-lg-8 entries">
+
+          
+    <div class="container wow fadeIn">
+      <div class="row">
+        <div class=" mb-4">
+          <div class="card"  style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+
+            <div class="col-md-8 ml-auto mr-auto">
+              {% for post in object_list %}
+              <div class="section">
+                <small> <a href="" style="font-family: cursive; text-shadow: 2px 2px 4px red; color: white;" > <b>{{post.author}}</b> </a> </small>
+                <br>
+                <p class="card-text" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                  {{post.body|safe}}
+                </p>
+                {% if post.category%}
+                <blockquote class="blockquote mb-0">
+
+                  <footer class="blockquote-footer"> <i>{{post.created_on}} | <cite title="Source Title"> <a
+                    href="{%url 'quote_category' post.category %}">{{post.category}}</i> </a></cite></footer>
+                </blockquote>
+                {% else %}
+                <footer class="blockquote-footer"> <i>{{post.created_on}}</i> </footer>
+                {% endif %}
+
+                <hr>
+              </div>
+
+              {% endfor %}
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+
+      </div><!-- End blog entries list -->
+
+
+
+
+      <div class="col-lg-4">
+
+        <div class="sidebar">
+
+          <h3 class="sidebar-title">Search</h3>
+          <div class="sidebar-item search-form">
+            <form action="{% url 'disp' %}" id="search-form" method="POST">
+              {% csrf_token %}
+              <input type="text" name="keyword" >
+              <button type="submit"><i class="icofont-search"></i></button>
+            </form>
+
+          </div><!-- End sidebar search formn-->
+
+          <h3 class="sidebar-title">Categories</h3>
+          <div class="sidebar-item categories">
+            <ul>
+              <li><a href="#">Relationship <span>(25)</span></a></li>
+              <li><a href="#">Food<span>(12)</span></a></li>
+              <li><a href="#"> Religion <span>(5)</span></a></li>
+              <li><a href="#">Education <span>(22)</span></a></li>
+
+            </ul>
+
+          </div><!-- End sidebar categories-->
+
+          <h3 class="sidebar-title">Recent Posts</h3>
+          <div class="sidebar-item recent-posts">
+            <div class="post-item clearfix">
+              <img src="{% static 'img/ado.png' %}" alt="">
+              <h4><a href="blog-single.html">Nihil blanditiis at in nihil autem</a></h4>
+              <time datetime="2020-01-01">Jan 1, 2020</time>
+            </div>
+
+          <h3 class="sidebar-title">Tags</h3>
+          <div class="sidebar-item tags">
+            <ul>
+              <li><a href="#">Luhyas</a></li>
+              <li><a href="#">Kikuyus</a></li>
+              <li><a href="#">Aleikum Salaam</a></li>
+              <li><a href="#">Ooliskia Wapi</a></li>
+
+            </ul>
+
+          </div><!-- End sidebar tags-->
+
+        </div><!-- End sidebar -->
+
+      </div><!-- End blog sidebar -->
+
+    </div>
+
+  </div>
+</section><!-- End Blog Section -->
+
+</main><!-- End #main -->
+
+
+
+
+
+
+
+
+
+
+<div class="container col-lg-8 entries">
+  
+
+
+  <main id="main">
+
+
+
+</div>
+
+</main>
+
+
+
+<script src="{% static 'assets/js/jquery-3.5.1.min.js' %}"></script>
+<script>
+  /* $(window).on('load',function(){
+   $('#exampleModalLong').modal('show');
+ });
+
+$('#search-form').submit(function(e){
+   e.preventDefault();
+ });*/
+
+
+</script>
+
+
+
+{% endblock %}
